@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply overflow-x-hidden font-body antialiased transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply backdrop-blur-[10px] bg-surface-dark/80 dark:bg-surface-dark/80;
+  }
+
+  .glass-light {
+    @apply backdrop-blur-[10px] bg-white/80;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-br from-accent-primary to-accent-secondary bg-clip-text text-transparent;
+  }
+
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(135deg, #6c63ff, #00d4ff);
+    padding: 1px;
+    border-radius: 12px;
+  }
+
+  .gradient-border > * {
+    border-radius: 11px;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium text-white transition-all duration-300;
+    background: linear-gradient(135deg, #6c63ff, #00d4ff);
+  }
+
+  .btn-primary:hover {
+    @apply scale-[1.02] shadow-glow-hover;
+    background: linear-gradient(135deg, #7b73ff, #1ad8ff);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border px-6 py-3 font-medium transition-all duration-300;
+    border-color: rgba(108, 99, 255, 0.3);
+  }
+
+  .btn-secondary:hover {
+    @apply scale-[1.02] border-accent-primary shadow-glow;
+  }
+
+  .section-container {
+    @apply mx-auto max-w-6xl px-5 sm:px-6 lg:px-8;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-glow-hover;
+  }
+}
+
+/* Hero particles */
+.particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(108, 99, 255, 0.3);
+  animation: particle-float 6s ease-in-out infinite;
+}
+
+@keyframes particle-float {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 0.6;
+  }
+}
+
+/* Nav link underline */
+.nav-link {
+  @apply relative transition-colors duration-300;
+}
+
+.nav-link::after {
+  content: '';
+  @apply absolute -bottom-1 left-0 h-0.5 w-0 bg-accent-primary transition-all duration-300;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  @apply w-full;
+}
