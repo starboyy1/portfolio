@@ -43,14 +43,14 @@ export default function Navbar({ isDark, toggleTheme }) {
   return (
     <>
       <motion.nav
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
+        initial={{ opacity: 0, y: -12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled || isOpen
             ? isDark
-              ? 'glass border-b border-accent-primary/15 shadow-glow'
-              : 'glass-light border-b border-accent-primary/15 shadow-glow'
+              ? 'glass border-b border-white/5'
+              : 'glass-light border-b border-black/5'
             : 'bg-transparent'
         }`}
       >
@@ -60,9 +60,12 @@ export default function Navbar({ isDark, toggleTheme }) {
             smooth
             duration={500}
             onClick={closeMenu}
-            className="cursor-pointer font-display text-2xl font-bold gradient-text"
+            className="cursor-pointer font-display text-xl font-extrabold tracking-tight"
           >
-            TM
+            <span className="text-accent-primary">T</span>
+            <span className={isDark ? 'text-text-primary-dark' : 'text-text-primary-light'}>
+              Mansoor
+            </span>
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">
@@ -82,14 +85,14 @@ export default function Navbar({ isDark, toggleTheme }) {
             ))}
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={toggleTheme}
               aria-label="Toggle dark mode"
-              className={`rounded-lg p-2 transition-all duration-300 hover:scale-105 ${
+              className={`rounded-md p-2 transition-all duration-300 hover:text-accent-primary ${
                 isDark
-                  ? 'text-text-primary-dark hover:bg-accent-primary/20'
+                  ? 'text-text-primary-dark hover:bg-accent-primary/10'
                   : 'text-text-primary-light hover:bg-accent-primary/10'
               }`}
             >
@@ -100,7 +103,7 @@ export default function Navbar({ isDark, toggleTheme }) {
               type="button"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
-              className={`relative z-[80] rounded-lg p-2 md:hidden ${
+              className={`relative z-[80] rounded-md p-2 md:hidden ${
                 isDark ? 'text-text-primary-dark' : 'text-text-primary-light'
               }`}
             >
@@ -127,28 +130,32 @@ export default function Navbar({ isDark, toggleTheme }) {
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ type: 'tween', duration: 0.3 }}
+              transition={{ type: 'tween', duration: 0.28 }}
               className={`fixed inset-y-0 right-0 z-[70] w-64 border-l p-6 pt-20 md:hidden ${
-                isDark
-                  ? 'border-accent-primary/15 bg-surface-dark'
-                  : 'border-accent-primary/15 bg-white'
+                isDark ? 'border-white/8 bg-surface-dark' : 'border-black/8 bg-white'
               }`}
             >
               <div className="flex flex-col gap-6">
-                {navLinks.map((link) => (
-                  <Link
+                {navLinks.map((link, i) => (
+                  <motion.div
                     key={link.to}
-                    to={link.to}
-                    smooth
-                    duration={500}
-                    offset={-70}
-                    spy
-                    onSetActive={setActiveSection}
-                    onClick={closeMenu}
-                    className={linkClass(link.to)}
+                    initial={{ opacity: 0, x: 16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.05 * i }}
                   >
-                    {link.name}
-                  </Link>
+                    <Link
+                      to={link.to}
+                      smooth
+                      duration={500}
+                      offset={-70}
+                      spy
+                      onSetActive={setActiveSection}
+                      onClick={closeMenu}
+                      className={linkClass(link.to)}
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>

@@ -2,14 +2,29 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { personal } from '../data/personal';
 
 export default function Footer({ isDark }) {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className={`border-t py-8 ${isDark ? 'border-accent-primary/15 bg-dark' : 'border-accent-primary/10 bg-surface-light'}`}>
+    <footer
+      className={`border-t py-10 ${
+        isDark ? 'border-white/5 bg-dark' : 'border-black/5 bg-surface-light'
+      }`}
+    >
       <div className="section-container">
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-          <span className="font-display text-2xl font-bold gradient-text">TM</span>
+          <span className="font-display text-lg font-extrabold tracking-tight">
+            <span className="text-accent-primary">T</span>
+            <span className={isDark ? 'text-text-primary-dark' : 'text-text-primary-light'}>
+              Mansoor
+            </span>
+          </span>
 
-          <p className={`text-sm ${isDark ? 'text-text-secondary-dark' : 'text-text-secondary-light'}`}>
-            Designed &amp; Built by {personal.name}
+          <p
+            className={`text-sm ${
+              isDark ? 'text-text-secondary-dark' : 'text-text-secondary-light'
+            }`}
+          >
+            Designed &amp; built by {personal.name}
           </p>
 
           <div className="flex gap-4">
@@ -34,11 +49,11 @@ export default function Footer({ isDark }) {
         </div>
 
         <p
-          className={`mt-6 text-center text-xs ${
+          className={`mt-8 text-center font-mono text-[11px] ${
             isDark ? 'text-text-secondary-dark/70' : 'text-text-secondary-light/70'
           }`}
         >
-          © 2025 {personal.name}. All rights reserved.
+          © {year} {personal.name}
         </p>
       </div>
     </footer>

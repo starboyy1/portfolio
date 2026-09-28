@@ -1,15 +1,17 @@
 export const personal = {
   name: 'Tayyab Mansoor',
-  title: 'Frontend React Developer',
-  tagline: 'I build fast, scalable, and beautiful web apps with React.js',
+  title: 'Software Engineer',
+  tagline:
+    'Building responsive, scalable web apps with React, Next.js, and TypeScript.',
   email: 'tayyabmansoor789@gmail.com',
   phone: '0334-5157737',
   location: 'Islamabad, Pakistan',
-  linkedin: 'https://www.linkedin.com/in/tayyab-mansoor-81bba22ba',
+  website: 'https://tayyabmansoor.com',
+  linkedin: 'https://www.linkedin.com/in/tayyabmansoor',
   github: 'https://github.com/starboyy1',
-  about: `I'm a Frontend Developer based in Islamabad, Pakistan, with 2 years of experience building enterprise-level web applications. I specialize in React.js, Redux, and Next.js — turning complex business requirements into clean, fast, and user-friendly interfaces.
+  about: `Software Engineer with 2 years of experience building responsive, scalable web applications using React.js, Next.js, TypeScript, Redux Toolkit, and modern JavaScript, alongside hands-on experience building REST APIs with Node.js and Express.
 
-I've worked on AI-powered scheduling platforms, multi-tenant admin dashboards, medical service platforms, and email campaign tools. I care deeply about performance, clean code, and great user experience.
+Experienced in SaaS platforms, GraphQL integration, real-time features, performance optimization, and production issue resolution. Focused on writing clean, maintainable code and delivering intuitive user experiences.
 
-Currently open to new opportunities — remote or Islamabad-based.`,
+Currently at Selteq Solutions in Islamabad — open to remote or Islamabad-based opportunities.`,
 };

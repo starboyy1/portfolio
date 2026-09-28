@@ -1,27 +1,26 @@
 export const skillCategories = [
   {
-    title: 'Core',
-    icon: '⚛️',
-    skills: ['React.js', 'Next.js', 'JavaScript (ES6+)', 'HTML5', 'CSS3'],
+    title: 'Languages',
+    skills: ['HTML5', 'CSS3', 'JavaScript (ES6+)', 'TypeScript'],
   },
   {
-    title: 'State Management',
-    icon: '🗃️',
-    skills: ['Redux Toolkit', 'Redux Saga', 'Redux Persist', 'Context API'],
+    title: 'Frameworks & Libraries',
+    skills: ['React.js', 'Next.js', 'Redux / Redux Toolkit'],
   },
   {
-    title: 'UI & Styling',
-    icon: '🎨',
-    skills: ['Tailwind CSS', 'Material UI', 'Ant Design', 'Bootstrap 5', 'SCSS'],
+    title: 'Backend',
+    skills: ['Node.js', 'Express.js', 'MongoDB', 'REST API development'],
   },
   {
-    title: 'Tools & APIs',
-    icon: '🔧',
-    skills: ['REST API', 'GraphQL', 'Axios', 'Socket.io', 'Formik + Yup'],
+    title: 'Styling',
+    skills: ['Tailwind CSS', 'Bootstrap', 'SASS', 'Responsive & Mobile-First'],
   },
   {
-    title: 'Dev Tools',
-    icon: '💻',
-    skills: ['Git & GitHub', 'Vite', 'React Router', 'Chart.js', 'jsPDF'],
+    title: 'APIs & Data',
+    skills: ['REST APIs', 'GraphQL', 'Socket.io', 'SSE'],
+  },
+  {
+    title: 'Tools',
+    skills: ['Git & GitHub', 'Webpack', 'Vite', 'npm', 'Cross-Browser Debugging'],
   },
 ];

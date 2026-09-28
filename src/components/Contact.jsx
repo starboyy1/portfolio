@@ -1,7 +1,14 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
-import { FaGithub, FaLinkedin, FaEnvelope, FaMapMarkerAlt, FaBriefcase } from 'react-icons/fa';
+import {
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaGlobe,
+} from 'react-icons/fa';
 import { HiCheckCircle, HiXCircle } from 'react-icons/hi';
 import { personal } from '../data/personal';
 
@@ -44,65 +51,78 @@ export default function Contact({ isDark }) {
     }
   };
 
-  const inputClass = `w-full rounded-lg border px-4 py-3 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent-primary/50 ${
+  const inputClass = `w-full rounded-md border px-4 py-3 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent-primary/40 ${
     isDark
-      ? 'border-accent-primary/20 bg-dark text-text-primary-dark placeholder:text-text-secondary-dark'
-      : 'border-accent-primary/15 bg-light text-text-primary-light placeholder:text-text-secondary-light'
+      ? 'border-white/10 bg-dark text-text-primary-dark placeholder:text-text-secondary-dark'
+      : 'border-black/10 bg-light text-text-primary-light placeholder:text-text-secondary-light'
   }`;
 
   const contactCards = [
     { icon: FaEnvelope, text: personal.email, href: `mailto:${personal.email}` },
+    { icon: FaPhone, text: personal.phone, href: `tel:${personal.phone}` },
     { icon: FaMapMarkerAlt, text: personal.location },
-    { icon: FaBriefcase, text: 'Open to Remote Work' },
+    { icon: FaGlobe, text: 'tayyabmansoor.com', href: personal.website },
   ];
 
   return (
     <section
       id="contact"
-      className={`py-24 ${isDark ? 'bg-surface-dark' : 'bg-surface-light'}`}
+      className={`noise-bg relative py-24 mesh-gradient ${
+        isDark ? 'bg-surface-dark' : 'bg-surface-light'
+      }`}
     >
-      <div className="section-container grid gap-12 lg:grid-cols-2">
+      <div className="section-container relative z-10 grid gap-12 lg:grid-cols-2">
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: -24, filter: 'blur(4px)' }}
+          whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
+          <span className="font-mono text-xs uppercase tracking-[0.2em] text-accent-primary">
+            Contact
+          </span>
           <h2
-            className={`font-display text-[clamp(2rem,4vw,3rem)] font-semibold ${
+            className={`mt-3 font-display text-[clamp(2rem,4vw,3rem)] font-bold ${
               isDark ? 'text-text-primary-dark' : 'text-text-primary-light'
             }`}
           >
-            Let&apos;s Work Together
+            Let&apos;s work together
           </h2>
           <p
-            className={`mt-4 leading-relaxed ${
+            className={`mt-4 max-w-md leading-relaxed ${
               isDark ? 'text-text-secondary-dark' : 'text-text-secondary-light'
             }`}
           >
-            I&apos;m currently open to new opportunities. Whether you have a project in mind or
-            just want to connect, my inbox is always open.
+            Open to new opportunities — remote or Islamabad-based. Send a message or reach out
+            directly.
           </p>
 
-          <div className="mt-8 space-y-4">
+          <div className="mt-8 space-y-3">
             {contactCards.map(({ icon: Icon, text, href }) => (
               <div
                 key={text}
-                className={`flex items-center gap-4 rounded-xl border p-4 ${
-                  isDark
-                    ? 'border-accent-primary/15 bg-dark'
-                    : 'border-accent-primary/10 bg-light'
+                className={`flex items-center gap-4 rounded-lg border p-4 ${
+                  isDark ? 'border-white/8 bg-dark/80' : 'border-black/6 bg-white/90'
                 }`}
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent-primary/20 text-accent-primary">
-                  <Icon className="h-5 w-5" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-md bg-accent-primary/15 text-accent-primary">
+                  <Icon className="h-4 w-4" />
                 </div>
                 {href ? (
-                  <a href={href} className="text-sm hover:text-accent-primary">
+                  <a
+                    href={href}
+                    target={href.startsWith('http') ? '_blank' : undefined}
+                    rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className="text-sm transition-colors hover:text-accent-primary"
+                  >
                     {text}
                   </a>
                 ) : (
-                  <span className={`text-sm ${isDark ? 'text-text-secondary-dark' : 'text-text-secondary-light'}`}>
+                  <span
+                    className={`text-sm ${
+                      isDark ? 'text-text-secondary-dark' : 'text-text-secondary-light'
+                    }`}
+                  >
                     {text}
                   </span>
                 )}
@@ -110,7 +130,7 @@ export default function Contact({ isDark }) {
             ))}
           </div>
 
-          <div className="mt-8 flex gap-4">
+          <div className="mt-8 flex gap-3">
             {[
               { icon: FaGithub, href: personal.github, label: 'GitHub' },
               { icon: FaLinkedin, href: personal.linkedin, label: 'LinkedIn' },
@@ -121,9 +141,9 @@ export default function Contact({ isDark }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className={`rounded-lg p-3 transition-all duration-300 hover:scale-110 hover:text-accent-primary ${
+                className={`rounded-md p-3 transition-all duration-300 hover:-translate-y-0.5 hover:text-accent-primary ${
                   isDark
-                    ? 'text-text-secondary-dark hover:bg-accent-primary/20'
+                    ? 'text-text-secondary-dark hover:bg-accent-primary/10'
                     : 'text-text-secondary-light hover:bg-accent-primary/10'
                 }`}
               >
@@ -134,67 +154,51 @@ export default function Contact({ isDark }) {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 24, filter: 'blur(4px)' }}
+          whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
           <form
             onSubmit={handleSubmit}
-            className={`rounded-xl border p-6 shadow-glow sm:p-8 ${
-              isDark
-                ? 'border-accent-primary/15 bg-dark'
-                : 'border-accent-primary/10 bg-light'
+            className={`rounded-lg border p-6 sm:p-8 ${
+              isDark ? 'border-white/8 bg-dark/90' : 'border-black/6 bg-white/95'
             }`}
           >
             <div className="space-y-4">
+              {[
+                { id: 'name', label: 'Name', type: 'text', placeholder: 'Your name' },
+                { id: 'email', label: 'Email', type: 'email', placeholder: 'your@email.com' },
+                { id: 'subject', label: 'Subject', type: 'text', placeholder: 'Project inquiry' },
+              ].map((field) => (
+                <div key={field.id}>
+                  <label
+                    htmlFor={field.id}
+                    className={`mb-1.5 block text-sm font-medium ${
+                      isDark ? 'text-text-primary-dark' : 'text-text-primary-light'
+                    }`}
+                  >
+                    {field.label}
+                  </label>
+                  <input
+                    id={field.id}
+                    name={field.id}
+                    type={field.type}
+                    required
+                    value={form[field.id]}
+                    onChange={handleChange}
+                    className={inputClass}
+                    placeholder={field.placeholder}
+                  />
+                </div>
+              ))}
               <div>
-                <label htmlFor="name" className={`mb-1.5 block text-sm font-medium ${isDark ? 'text-text-primary-dark' : 'text-text-primary-light'}`}>
-                  Name
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  value={form.name}
-                  onChange={handleChange}
-                  className={inputClass}
-                  placeholder="Your name"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className={`mb-1.5 block text-sm font-medium ${isDark ? 'text-text-primary-dark' : 'text-text-primary-light'}`}>
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  value={form.email}
-                  onChange={handleChange}
-                  className={inputClass}
-                  placeholder="your@email.com"
-                />
-              </div>
-              <div>
-                <label htmlFor="subject" className={`mb-1.5 block text-sm font-medium ${isDark ? 'text-text-primary-dark' : 'text-text-primary-light'}`}>
-                  Subject
-                </label>
-                <input
-                  id="subject"
-                  name="subject"
-                  type="text"
-                  required
-                  value={form.subject}
-                  onChange={handleChange}
-                  className={inputClass}
-                  placeholder="Project inquiry"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className={`mb-1.5 block text-sm font-medium ${isDark ? 'text-text-primary-dark' : 'text-text-primary-light'}`}>
+                <label
+                  htmlFor="message"
+                  className={`mb-1.5 block text-sm font-medium ${
+                    isDark ? 'text-text-primary-dark' : 'text-text-primary-light'
+                  }`}
+                >
                   Message
                 </label>
                 <textarea
@@ -221,7 +225,7 @@ export default function Contact({ isDark }) {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                className={`mt-4 flex items-center gap-2 rounded-lg p-4 text-sm ${
+                className={`mt-4 flex items-center gap-2 rounded-md p-4 text-sm ${
                   status === 'success'
                     ? 'bg-success/10 text-success'
                     : 'bg-red-500/10 text-red-400'
@@ -235,7 +239,7 @@ export default function Contact({ isDark }) {
                 ) : (
                   <>
                     <HiXCircle className="h-5 w-5" />
-                    Failed to send message. Please try again or email me directly.
+                    Failed to send. Email me directly at {personal.email}.
                   </>
                 )}
               </motion.div>

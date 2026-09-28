@@ -5,41 +5,46 @@ export default {
   theme: {
     extend: {
       colors: {
-        dark: '#0A0A0F',
+        dark: '#0B0F14',
         surface: {
-          dark: '#12121A',
+          dark: '#121820',
           light: '#FFFFFF',
         },
-        light: '#F8F9FF',
+        light: '#F1F3F5',
         accent: {
-          primary: '#6C63FF',
-          secondary: '#00D4FF',
+          primary: '#2DD4BF',
+          secondary: '#F59E0B',
         },
-        'text-primary-dark': '#F0F0FF',
-        'text-secondary-dark': '#8888AA',
-        'text-primary-light': '#0D0D1A',
-        'text-secondary-light': '#555577',
-        success: '#00E676',
+        'text-primary-dark': '#E8EEF2',
+        'text-secondary-dark': '#8B9AAB',
+        'text-primary-light': '#0B0F14',
+        'text-secondary-light': '#5A6570',
+        success: '#34D399',
       },
       fontFamily: {
-        display: ['"Space Grotesk"', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        display: ['Syne', 'sans-serif'],
+        body: ['"DM Sans"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       boxShadow: {
-        glow: '0 0 30px rgba(108, 99, 255, 0.1)',
-        'glow-hover': '0 0 50px rgba(108, 99, 255, 0.25)',
+        glow: '0 0 40px rgba(45, 212, 191, 0.08)',
+        'glow-hover': '0 12px 40px rgba(45, 212, 191, 0.18)',
       },
       animation: {
-        float: 'float 3s ease-in-out infinite',
+        float: 'float 4s ease-in-out infinite',
+        'line-draw': 'line-draw 1.2s ease-out forwards',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
+          '50%': { transform: 'translateY(-12px)' },
+        },
+        'line-draw': {
+          '0%': { transform: 'scaleY(0)' },
+          '100%': { transform: 'scaleY(1)' },
         },
       },
     },
   },
   plugins: [],
-}
+};
